@@ -1,9 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { projectFirestore } from "../firebese/config";
+import {
+  WhereFilterOp,
+  FieldPath,
+  OrderByDirection,
+  DocumentData,
+  Query,
+} from "@firebase/firestore-types";
+import { Transactions } from "../types/types";
 
-export const useCollection = (collection, _query, _orderBy) => {
-  const [documents, setDocuments] = useState(null);
-  const [error, setError] = useState(null);
+type firebaseQueryType = [string | FieldPath, WhereFilterOp, any];
+type firebaseOrderByType = [string | FieldPath, OrderByDirection];
+
+export const useCollection = (
+  collection: string,
+  _query: firebaseQueryType,
+  _orderBy: firebaseOrderByType
+) => {
+  const [documents, setDocuments] = useState<Transactions>([]);
+  const [error, setError] = useState<string>("");
 
   // if we dont use a ref --> infinite loop in useEffect
   // _query is an array(reference type) and is "diffrent" on every function call
@@ -11,7 +26,7 @@ export const useCollection = (collection, _query, _orderBy) => {
   const orderBy = useRef(_orderBy).current;
 
   useEffect(() => {
-    let ref = projectFirestore.collection(collection);
+    let ref: Query<DocumentData> = projectFirestore.collection(collection);
 
     // use this only if we have query
     if (query) {
@@ -24,10 +39,10 @@ export const useCollection = (collection, _query, _orderBy) => {
       ref = ref.orderBy(...orderBy);
     }
 
-    // everytime snapshot update it will by called
+    // everytime snapshot update it will be called
     const unsubscribe = ref.onSnapshot(
       (snapshot) => {
-        let results = [];
+        let results: Transactions = [];
         // snapshot.docs is collection of data from database an start listen for them
         snapshot.docs.forEach((doc) => {
           // name ,amount, uid --- doc.id is id of document not a user
@@ -36,7 +51,7 @@ export const useCollection = (collection, _query, _orderBy) => {
 
         // update state
         setDocuments(results);
-        setError(null);
+        setError("");
       },
       (error) => {
         console.log(error);

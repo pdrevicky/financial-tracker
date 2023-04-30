@@ -6,8 +6,9 @@ import styles from "./Home.module.css";
 
 // components
 import TransactionForm from "./TransactionForm";
+import { ReactElement } from "react";
 
-export default function Home() {
+export default function Home(): ReactElement {
   const { user } = useAuthContext();
   const { documents, error } = useCollection(
     "transactions",

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { useFirestore } from "../../hooks/useFirestore";
 
-export default function TransactionForm({ uid }) {
+interface Props {
+  uid: string;
+}
+
+export default function TransactionForm({ uid }: Props): ReactElement {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
 
   const { addDocuments, response } = useFirestore("transactions");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     // submitting a form will automaticly reload the page this will cancle that
     e.preventDefault();
     addDocuments({ uid, name, amount });
