@@ -24,7 +24,7 @@ export const useCollection = (collection, _query, _orderBy) => {
       ref = ref.orderBy(...orderBy);
     }
 
-    // everytime snapshot update it will
+    // everytime snapshot update it will by called
     const unsubscribe = ref.onSnapshot(
       (snapshot) => {
         let results = [];
