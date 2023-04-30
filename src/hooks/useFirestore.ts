@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useState, Reducer } from "react";
+import { useReducer, useEffect, useState } from "react";
 import { projectFirestore, timestamp } from "../firebese/config";
 import {
   FirestoreReducerAction,
@@ -52,9 +52,7 @@ const firestoreReducer = (
 };
 
 export const useFirestore = (collection: string) => {
-  const [response, dispatch] = useReducer<
-    Reducer<StateProps, FirestoreReducerAction>
-  >(firestoreReducer, initialState);
+  const [response, dispatch] = useReducer(firestoreReducer, initialState);
   const [isCancelled, setIsCancelled] = useState(false);
 
   // collection ref
