@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { projectAuth } from "../firebese/config";
+import { AuthActionTypeEnum } from "../types/types";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
@@ -33,7 +34,7 @@ export const useSignup = () => {
       await res.user!.updateProfile({ displayName });
 
       // dispatch login action
-      dispatch({ type: "LOGIN", payload: res.user });
+      dispatch({ type: AuthActionTypeEnum.LOGIN, payload: res.user });
 
       if (!isCanceled) {
         setIsPending(false);

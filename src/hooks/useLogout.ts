@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { projectAuth } from "../firebese/config";
+import { AuthActionTypeEnum } from "../types/types";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogout = () => {
@@ -19,7 +20,7 @@ export const useLogout = () => {
 
       // dispatch logout action user will become null
       // we set user null inside AuthContext
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: AuthActionTypeEnum.LOGOUT, payload: null });
 
       // update state
       if (!isCanceled) {

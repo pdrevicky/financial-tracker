@@ -1,6 +1,7 @@
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 import TransactionList from "./TransactionList";
+import React from "react";
 // styles
 import styles from "./Home.module.css";
 
@@ -12,7 +13,7 @@ export default function Home(): ReactElement {
   const { user } = useAuthContext();
   const { documents, error } = useCollection(
     "transactions",
-    ["uid", "==", user.uid],
+    ["uid", "==", user?.uid],
     ["createdAt", "desc"]
   );
 
@@ -23,7 +24,7 @@ export default function Home(): ReactElement {
         {documents && <TransactionList transactions={documents} />}
       </div>
       <div className={styles.sidebar}>
-        <TransactionForm uid={user.uid} />
+        <TransactionForm uid={user?.uid ?? ""} />
       </div>
     </div>
   );

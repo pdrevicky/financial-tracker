@@ -1,11 +1,11 @@
 import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { projectAuth } from "../firebese/config";
 import React from "react";
-import firebese from "firebase";
+import firebase from "firebase";
 import { AuthActionTypeEnum } from "../types/types";
 
 type AuthContextType = {
-  user: payloadType;
+  user: firebase.User | null;
   authIsReady: boolean;
   dispatch: (value: AuthAction) => void;
 };
@@ -18,15 +18,13 @@ const MyAuthContext = {
 
 export const AuthContext = createContext<AuthContextType>(MyAuthContext);
 
-type payloadType = firebese.User | boolean | null;
-
 type AuthAction = {
   type: AuthActionTypeEnum;
-  payload: payloadType;
+  payload: firebase.User | null;
 };
 
 interface AuthState {
-  user: payloadType;
+  user: firebase.User | null;
   authIsReady: boolean;
 }
 

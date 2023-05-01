@@ -88,7 +88,6 @@ export const useFirestore = (collection: string) => {
   // delete a document
   const deleteDocument = async (id: string) => {
     dispatch({ type: FirestoreReducerEnum.IS_PENDING });
-    console.log("id", id);
     try {
       await ref.doc(id).delete();
       dispachIfNotCancelled({
