@@ -9,3 +9,9 @@ export type Transactions = {
   uid?: string;
   name?: string;
 }[];
+
+export enum AuthActionTypeEnum {
+  LOGIN = "LOGIN",
+  LOGOUT = "LOGOUT",
+  AUTH_IS_READY = "AUTH_IS_READY",
+}

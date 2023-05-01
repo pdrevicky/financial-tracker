@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { projectAuth } from "../firebese/config";
+import { AuthActionTypeEnum } from "../types/types";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {
@@ -18,7 +19,7 @@ export const useLogin = () => {
       const res = await projectAuth.signInWithEmailAndPassword(email, password);
 
       // dispatch login action
-      dispatch({ type: "LOGIN", payload: res.user });
+      dispatch({ type: AuthActionTypeEnum.LOGIN, payload: res.user });
 
       // update local state
       if (!isCanceled) {
