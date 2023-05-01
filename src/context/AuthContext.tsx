@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useReducer } from "react";
-import { projectAuth } from "../firebese/config";
+import { projectAuth } from "../firebase/config";
 import React from "react";
 import firebase from "firebase";
 import { AuthActionTypeEnum } from "../types/types";

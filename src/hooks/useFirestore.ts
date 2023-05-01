@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useState } from "react";
-import { projectFirestore, timestamp } from "../firebese/config";
+import { projectFirestore, timestamp } from "../firebase/config";
 import {
   FirestoreReducerAction,
   FirestoreReducerEnum,

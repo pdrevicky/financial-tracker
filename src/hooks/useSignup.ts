@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { projectAuth } from "../firebese/config";
+import { projectAuth } from "../firebase/config";
 import { AuthActionTypeEnum } from "../types/types";
 import { useAuthContext } from "./useAuthContext";
 

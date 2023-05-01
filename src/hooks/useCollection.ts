@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { projectFirestore } from "../firebese/config";
+import { projectFirestore } from "../firebase/config";
 import {
   WhereFilterOp,
   FieldPath,
