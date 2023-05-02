@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
-
-// styles
-import styles from "./Login.module.css";
+import React from "react";
+import styled from "@emotion/styled";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,7 +15,7 @@ export default function Login() {
   };
 
   return (
-    <form className={styles["login-form"]} onSubmit={handleSubmit}>
+    <LoginForm onSubmit={handleSubmit}>
       <h2>Login</h2>
       <label>
         <span>email:</span>
@@ -42,6 +41,26 @@ export default function Login() {
         </button>
       )}
       {error && <p>{error}</p>}
-    </form>
+    </LoginForm>
   );
 }
+
+const LoginForm = styled.form`
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 20px;
+  label {
+    display: block;
+    margin: 30px auto;
+  }
+  span {
+    display: block;
+    margin-bottom: 6px;
+  }
+  input {
+    padding: 8px 6px;
+    font-size: 1em;
+    color: #777;
+    width: 100%;
+  }
+`;
