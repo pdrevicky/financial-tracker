@@ -2,18 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
-
-//styles
-import styles from "./Navbar.module.css";
+import styled from "@emotion/styled";
 
 export default function Navbar() {
   const { logout } = useLogout();
   const { user } = useAuthContext();
 
   return (
-    <nav className={styles.navbar}>
+    <NavbarContainer>
       <ul>
-        <li className={styles.title}>myMoneyApp</li>
+        <Title>myMoneyApp</Title>
 
         {!user && (
           <>
@@ -36,6 +34,34 @@ export default function Navbar() {
           </>
         )}
       </ul>
-    </nav>
+    </NavbarContainer>
   );
 }
+
+const NavbarContainer = styled.nav`
+  width: 100%;
+  background: #effaf0;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  ul {
+    display: flex;
+    margin: 0 auto;
+    max-width: 960px;
+    align-items: center;
+  }
+  button,
+  a {
+    margin-left: 16px;
+  }
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+`;
+
+const Title = styled.li`
+  margin-right: auto;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+`;
